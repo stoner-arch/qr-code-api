@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+ENV_VARS.txt
+PROGRESS.md
+.pytest_cache/
