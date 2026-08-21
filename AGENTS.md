@@ -14,7 +14,7 @@ Generate a QR code PNG from any text or URL.
 ## Workflow
 
 ```bash
-cd /storage/emulated/0/AI-Projects/html-test/qr-code-api
+# from the repo root
 python -m pytest
 git add . && git commit -m "msg" && git push
 ```
