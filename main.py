@@ -19,11 +19,7 @@ DEFAULT_KEYS = {
 
 MONTH_SECONDS = 30 * 24 * 60 * 60
 
-# Accept RapidAPI's gateway secret header. Set RAPIDAPI_PROXY_SECRET env var
-# to your own value and add any RapidAPI-generated secrets below.
-RAPIDAPI_SECRETS = [
-    "microapi-proxy-2026",
-]
+
 
 
 def load_keys() -> dict:
@@ -84,8 +80,8 @@ def require_key(
     x_api_key: str = Header(None),
     x_rapidapi_proxy_secret: str = Header(None),
 ) -> str:
-    secrets = [s for s in [os.environ.get("RAPIDAPI_PROXY_SECRET"), *RAPIDAPI_SECRETS] if s]
-    if x_rapidapi_proxy_secret in secrets:
+    secret = os.environ.get("RAPIDAPI_PROXY_SECRET")
+    if secret and x_rapidapi_proxy_secret == secret:
         return "rapidapi"
     if not x_api_key or x_api_key not in API_KEYS:
         raise HTTPException(
